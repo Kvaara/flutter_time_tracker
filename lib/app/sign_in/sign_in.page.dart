@@ -10,15 +10,41 @@ class SignInPage extends StatelessWidget {
           ),
           elevation: 3.0,
         ),
-        body: Column(
-          children: <Widget>[
-            Container(
-                color: Colors.black,
-                child: SizedBox(
-                  width: 50,
-                  height: 50,
-                ))
-          ],
-        ));
+        body: _buildContent());
+  }
+
+  Widget _buildContent() {
+    return Container(
+      margin: EdgeInsets.all(12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            color: Colors.black,
+            child: const SizedBox(
+              height: 50,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            color: Colors.red,
+            child: const SizedBox(
+              height: 50,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            color: Colors.orange,
+            child: const SizedBox(
+              height: 50,
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
