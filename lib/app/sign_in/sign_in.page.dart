@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatelessWidget {
@@ -17,30 +18,24 @@ class SignInPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(12.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
-            color: Colors.black,
-            child: const SizedBox(
-              height: 50,
+          const Text(
+            "Sign in",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(
             height: 8,
           ),
-          Container(
-            color: Colors.red,
-            child: const SizedBox(
-              height: 50,
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            color: Colors.orange,
-            child: const SizedBox(
-              height: 50,
+          const ElevatedButton(
+            onPressed: null,
+            child: Text(
+              "Sign in through Google",
             ),
           )
         ],
