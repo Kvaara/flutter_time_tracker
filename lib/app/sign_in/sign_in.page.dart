@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_time_tracker/widgets/elevated_button.custom.dart';
+import 'package:flutter_time_tracker/app/sign_in/button_with_image.dart';
+import 'package:flutter_time_tracker/app/sign_in/sign_in_button.dart';
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,20 +35,49 @@ class SignInPage extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(
-            height: 8,
+          const SizedBox(height: 15),
+          ButtonWithImage(
+            assetName: "images/google-logo.png",
+            text: "Sign in with Google",
+            color: Colors.white,
+            textColor: Colors.black,
+            onPressed: () {
+              print("lol");
+            },
           ),
-          CustomElevatedButton(
-            child: const Text(
-              "Sign in with Google",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-              ),
+          const SizedBox(height: 8),
+          ButtonWithImage(
+            assetName: "images/facebook-logo.png",
+            text: "Sign in with Facebook",
+            color: const Color(0xFF334D92),
+            textColor: Colors.white,
+            onPressed: () {
+              print("lol");
+            },
+          ),
+          const SizedBox(height: 8),
+          SignInButton(
+            text: "Sign in with email",
+            color: Colors.teal.shade700,
+            textColor: Colors.white,
+            onPressed: () {
+              print("lol");
+            },
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            "or",
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black,
             ),
-            buttonBackgroundColor: Colors.white,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          SignInButton(
+            text: "Continue anonymously",
+            color: Colors.lime.shade300,
+            textColor: Colors.black,
             onPressed: () {
               print("lol");
             },
