@@ -5,12 +5,14 @@ import 'package:flutter_time_tracker/app/sign_in/button_with_image.dart';
 import 'package:flutter_time_tracker/app/sign_in/sign_in_button.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  final void Function(User) onSignIn;
+
+  const SignInPage({Key? key, required this.onSignIn}) : super(key: key);
 
   Future<void> _signInAnonymously() async {
     try {
-      final user = await FirebaseAuth.instance.signInAnonymously();
-      print("User is: $user");
+      final userCredentials = await FirebaseAuth.instance.signInAnonymously();
+      onSignIn(userCredentials.user!);
     } catch (error) {
       print(error.toString());
     }
