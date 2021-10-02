@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
           TextButton(
             onPressed: _signOut,
             child: const Text(
-              "SIGN OUT",
+              "LOG OUT",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
