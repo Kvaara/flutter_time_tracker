@@ -70,9 +70,7 @@ class SignInPage extends StatelessWidget {
             text: "Sign in with Facebook",
             color: const Color(0xFF334D92),
             textColor: Colors.white,
-            onPressed: () {
-              print("lol");
-            },
+            onPressed: auth.signInWithFacebook,
           ),
           const SizedBox(height: 8),
           SignInButton(
