@@ -12,6 +12,7 @@ abstract class AuthInterface {
 
 class Auth implements AuthInterface {
   final _firebaseAuthInstance = FirebaseAuth.instance;
+  final _googleSignIn = GoogleSignIn();
 
   @override
   Stream<User?> authStateChanges() => _firebaseAuthInstance.authStateChanges();
@@ -27,8 +28,7 @@ class Auth implements AuthInterface {
 
   @override
   Future<User> signInWithGoogle() async {
-    final googleSignIn = GoogleSignIn();
-    final googleUser = await googleSignIn.signIn();
+    final googleUser = await _googleSignIn.signIn();
     if (googleUser != null) {
       final googleAuth = await googleUser.authentication;
       if (googleAuth.idToken != null) {
@@ -53,5 +53,8 @@ class Auth implements AuthInterface {
   }
 
   @override
-  Future<void> signOut() async => await _firebaseAuthInstance.signOut();
+  Future<void> signOut() async {
+    await _googleSignIn.signOut();
+    await _firebaseAuthInstance.signOut();
+  }
 }
