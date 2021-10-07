@@ -59,13 +59,24 @@ class Auth implements AuthInterface {
   @override
   Future<User> signInWithFacebook() async {
     final LoginResult facebookUser = await _faceBookSignIn.login();
-    if (facebookUser.status == LoginStatus.success) {
-      final String accessToken = facebookUser.accessToken!.token;
-      final userCredential = await _firebaseAuthInstance
-          .signInWithCredential(FacebookAuthProvider.credential(accessToken));
-      return userCredential.user!;
-    } else {
-      throw Exception(facebookUser.status);
+    switch (facebookUser.status) {
+      case LoginStatus.success:
+        final String accessToken = facebookUser.accessToken!.token;
+        final userCredential = await _firebaseAuthInstance
+            .signInWithCredential(FacebookAuthProvider.credential(accessToken));
+        return userCredential.user!;
+      case LoginStatus.cancelled:
+        throw FirebaseAuthException(
+          code: "ERROR_ABORTED_BY_USER",
+          message: facebookUser.message,
+        );
+      case LoginStatus.failed:
+        throw FirebaseAuthException(
+          code: "ERROR_FACEBOOK_LOGIN_FAILED",
+          message: facebookUser.message,
+        );
+      default:
+        throw UnimplementedError();
     }
   }
 

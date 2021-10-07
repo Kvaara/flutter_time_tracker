@@ -11,17 +11,25 @@ class SignInPage extends StatelessWidget {
 
   const SignInPage({Key? key, required this.auth}) : super(key: key);
 
-  Future<void> _signInAnonymously() async {
+  Future<void> _signInWithGoogle() async {
     try {
-      await auth.signInAnonymously();
+      await auth.signInWithGoogle();
     } catch (error) {
       print(error.toString());
     }
   }
 
-  Future<void> _signInWithGoogle() async {
+  Future<void> _signInWithFacebook() async {
     try {
-      await auth.signInWithGoogle();
+      await auth.signInWithFacebook();
+    } catch (error) {
+      print(error.toString());
+    }
+  }
+
+  Future<void> _signInAnonymously() async {
+    try {
+      await auth.signInAnonymously();
     } catch (error) {
       print(error.toString());
     }
@@ -70,7 +78,7 @@ class SignInPage extends StatelessWidget {
             text: "Sign in with Facebook",
             color: const Color(0xFF334D92),
             textColor: Colors.white,
-            onPressed: auth.signInWithFacebook,
+            onPressed: _signInWithFacebook,
           ),
           const SizedBox(height: 8),
           SignInButton(
