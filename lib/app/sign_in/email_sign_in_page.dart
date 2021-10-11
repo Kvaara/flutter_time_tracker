@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_time_tracker/app/sign_in/email_sign_in_form.dart';
+
 class EmailSignInPage extends StatelessWidget {
   const EmailSignInPage({Key? key}) : super(key: key);
 
@@ -8,16 +10,15 @@ class EmailSignInPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text("Email sign in"),
+          child: Text("Sign in"),
         ),
         elevation: 3.0,
       ),
-      body: _buildContent(),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Card(child: EmailSignInForm()),
+      ),
       backgroundColor: Colors.grey.shade200,
     );
-  }
-
-  Widget _buildContent() {
-    return Container();
   }
 }

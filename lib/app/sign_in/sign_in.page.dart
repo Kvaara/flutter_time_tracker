@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter_time_tracker/app/sign_in/button_with_image.dart';
+import 'package:flutter_time_tracker/app/sign_in/email_sign_in_page.dart';
 import 'package:flutter_time_tracker/app/sign_in/sign_in_button.dart';
 import 'package:flutter_time_tracker/services/Auth.dart';
 
@@ -27,6 +26,15 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => EmailSignInPage(),
+      ),
+    );
+  }
+
   Future<void> _signInAnonymously() async {
     try {
       await auth.signInAnonymously();
@@ -44,12 +52,12 @@ class SignInPage extends StatelessWidget {
         ),
         elevation: 3.0,
       ),
-      body: _buildContent(),
+      body: _buildContent(context),
       backgroundColor: Colors.grey.shade200,
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(12.0),
       child: Column(
@@ -85,9 +93,7 @@ class SignInPage extends StatelessWidget {
             text: "Sign in with email",
             color: Colors.teal.shade700,
             textColor: Colors.white,
-            onPressed: () {
-              print("lol");
-            },
+            onPressed: () => _signInWithEmail(context),
           ),
           const SizedBox(height: 8),
           const Text(
